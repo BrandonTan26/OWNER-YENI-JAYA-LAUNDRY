@@ -891,75 +891,186 @@
                 `;
             },
 
-            downloadPDF() {
-                if (!State.currentLaporan || State.currentLaporan.data.length === 0) {
-                    Swal.fire({ icon: 'warning', title: 'Generate laporan dulu' });
-                    return;
+           downloadPDF() {
+    if (!State.currentLaporan || State.currentLaporan.data.length === 0) {
+        Swal.fire({ icon: 'warning', title: 'Generate laporan dulu' });
+        return;
+    }
+    
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+    const s = State.settings;
+    const d = State.currentLaporan;
+    
+    // ============ HEADER ELEGAN ============
+    pdf.setDrawColor(100, 100, 100);
+    pdf.setLineWidth(0.5);
+    pdf.line(15, 10, 195, 10);
+    pdf.line(15, 12, 195, 12);
+    
+    // Logo kiri
+    if (s.logo) {
+        try {
+            pdf.addImage(s.logo, 'PNG', 15, 15, 25, 25);
+        } catch(e) {}
+    }
+    
+    // Nama laundry kanan
+    pdf.setFontSize(16);
+    pdf.setTextColor(30, 30, 30);
+    pdf.setFont(undefined, 'bold');
+    pdf.text(s.nama_laundry || 'YENI JAYA LAUNDRY', 195, 22, { align: 'right' });
+    
+    pdf.setFontSize(9);
+    pdf.setFont(undefined, 'normal');
+    pdf.setTextColor(100, 100, 100);
+    pdf.text(s.alamat || '', 195, 28, { align: 'right' });
+    pdf.text('WA: ' + (s.whatsapp || '-'), 195, 33, { align: 'right' });
+    
+    // Border bottom header
+    pdf.setDrawColor(100, 100, 100);
+    pdf.line(15, 42, 195, 42);
+    pdf.line(15, 44, 195, 44);
+    
+    // ============ TITLE ============
+    pdf.setFontSize(14);
+    pdf.setTextColor(30, 30, 30);
+    pdf.setFont(undefined, 'bold');
+    pdf.text('LAPORAN KEUANGAN', 105, 55, { align: 'center' });
+    
+    pdf.setFontSize(10);
+    pdf.setFont(undefined, 'normal');
+    pdf.setTextColor(100, 100, 100);
+    pdf.text('Periode: ' + d.periode, 105, 62, { align: 'center' });
+    
+    // ============ INFO BOX ============
+    pdf.setFillColor(245, 245, 245);
+    pdf.roundedRect(20, 70, 170, 22, 2, 2, 'F');
+    pdf.setDrawColor(200, 200, 200);
+    pdf.roundedRect(20, 70, 170, 22, 2, 2, 'S');
+    
+    pdf.setFontSize(9);
+    pdf.setTextColor(30, 30, 30);
+    pdf.text('Total Transaksi: ' + d.data.length, 25, 78);
+    pdf.text('Total Omzet: ' + this.fmtRupiah(d.totalOmzet), 25, 85);
+    pdf.text('Rata-rata/Transaksi: ' + this.fmtRupiah(d.avgTransaksi), 110, 78);
+    pdf.text('Tanggal Cetak: ' + new Date().toLocaleDateString('id-ID'), 110, 85);
+    
+    // ============ A. DETAIL TRANSAKSI ============
+    pdf.setFontSize(11);
+    pdf.setFont(undefined, 'bold');
+    pdf.setTextColor(30, 30, 30);
+    pdf.text('A. DETAIL TRANSAKSI', 20, 105);
+    
+    let y = 112;
+    pdf.setFillColor(60, 60, 60);
+    pdf.rect(20, y - 5, 170, 7, 'F');
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFontSize(8);
+    pdf.setFont(undefined, 'bold');
+    pdf.text('Tanggal', 22, y);
+    pdf.text('Invoice', 55, y);
+    pdf.text('Customer', 90, y);
+    pdf.text('Metode', 130, y);
+    pdf.text('Total', 165, y);
+    
+    y += 8;
+    pdf.setTextColor(30, 30, 30);
+    pdf.setFont(undefined, 'normal');
+    
+    d.data.forEach((t, i) => {
+        if (y > 270) { pdf.addPage(); y = 20; }
+        const bg = i % 2 === 0 ? [250, 250, 250] : [255, 255, 255];
+        pdf.setFillColor(...bg);
+        pdf.rect(20, y - 4, 170, 6, 'F');
+        pdf.text(new Date(t.Tanggal || t.tanggal).toLocaleDateString('id-ID'), 22, y);
+        pdf.text(t.Invoice || t.invoice || '', 55, y);
+        pdf.text((t.Customer || t.customer || '').substring(0, 25), 90, y);
+        pdf.text(t.Metode || t.metode || 'Cash', 130, y);
+        pdf.text(this.fmtRupiah(parseFloat(t.Total || t.total) || 0), 165, y);
+        y += 6;
+    });
+    
+    // ============ B. TOP 10 PRODUK TERLARIS ============
+    pdf.addPage();
+    pdf.setFontSize(11);
+    pdf.setFont(undefined, 'bold');
+    pdf.setTextColor(30, 30, 30);
+    pdf.text('B. TOP 10 PRODUK TERLARIS', 20, 20);
+    
+    // Aggregate products from items
+    const productStats = {};
+    d.data.forEach(t => {
+        if (t.items && Array.isArray(t.items)) {
+            t.items.forEach(item => {
+                const nama = item.Nama || item.nama || 'Unknown';
+                if (!productStats[nama]) {
+                    productStats[nama] = { 
+                        nama, 
+                        kategori: item.Kategori || item.kategori || '-',
+                        terjual: 0, 
+                        pendapatan: 0 
+                    };
                 }
-                
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF();
-                const s = State.settings;
-                
-                pdf.setFillColor(99, 102, 241);
-                pdf.rect(0, 0, 210, 40, 'F');
-                pdf.setTextColor(255, 255, 255);
-                pdf.setFontSize(18);
-                pdf.text(s.nama_laundry || 'YENI JAYA LAUNDRY', 105, 18, { align: 'center' });
-                pdf.setFontSize(9);
-                pdf.text(s.alamat || '', 105, 25, { align: 'center' });
-                pdf.text('WA: ' + (s.whatsapp || '-'), 105, 31, { align: 'center' });
-                
-                pdf.setTextColor(0);
-                pdf.setFontSize(14);
-                pdf.text('LAPORAN PENJUALAN', 105, 55, { align: 'center' });
-                pdf.setFontSize(10);
-                pdf.text('Periode: ' + State.currentLaporan.periode, 105, 62, { align: 'center' });
-                
-                pdf.setFillColor(241, 245, 249);
-                pdf.roundedRect(20, 70, 170, 25, 3, 3, 'F');
-                pdf.setFontSize(9);
-                pdf.text('Total Transaksi: ' + State.currentLaporan.data.length, 25, 80);
-                pdf.text('Total Omzet: ' + this.fmtRupiah(State.currentLaporan.totalOmzet), 25, 87);
-                pdf.text('Rata-rata: ' + this.fmtRupiah(State.currentLaporan.avgTransaksi), 120, 80);
-                pdf.text('Tanggal Cetak: ' + new Date().toLocaleDateString('id-ID'), 120, 87);
-                
-                pdf.setFontSize(10);
-                pdf.text('Detail Transaksi:', 20, 108);
-                
-                let y = 115;
-                pdf.setFillColor(99, 102, 241);
-                pdf.rect(20, y - 5, 170, 7, 'F');
-                pdf.setTextColor(255);
-                pdf.setFontSize(8);
-                pdf.text('Tanggal', 22, y);
-                pdf.text('Invoice', 60, y);
-                pdf.text('Customer', 95, y);
-                pdf.text('Total', 150, y);
-                
-                y += 8;
-                pdf.setTextColor(0);
-                State.currentLaporan.data.forEach((t, i) => {
-                    if (y > 280) { pdf.addPage(); y = 20; }
-                    const bg = i % 2 === 0 ? [248, 250, 252] : [255, 255, 255];
-                    pdf.setFillColor(...bg);
-                    pdf.rect(20, y - 4, 170, 6, 'F');
-                    pdf.text(new Date(t.Tanggal || t.tanggal).toLocaleDateString('id-ID'), 22, y);
-                    pdf.text(t.Invoice || t.invoice || '', 60, y);
-                    pdf.text((t.Customer || t.customer || '').substring(0, 20), 95, y);
-                    pdf.text(this.fmtRupiah(parseFloat(t.Total || t.total) || 0), 150, y);
-                    y += 6;
-                });
-                
-                pdf.setFontSize(8);
-                pdf.setTextColor(150);
-                pdf.text('Laporan dibuat otomatis oleh YENI JAYA LAUNDRY System', 105, 285, { align: 'center' });
-                
-                const fileName = `Laporan_${State.currentLaporan.periode.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
-                pdf.save(fileName);
-                
-                Swal.fire({ icon: 'success', title: 'PDF berhasil diunduh', timer: 1500 });
-            },
+                productStats[nama].terjual += parseFloat(item.Berat || item.berat) || 1;
+                productStats[nama].pendapatan += parseFloat(item.Subtotal || item.subtotal) || 0;
+            });
+        }
+    });
+    
+    const top10 = Object.values(productStats)
+        .sort((a, b) => b.pendapatan - a.pendapatan)
+        .slice(0, 10);
+    
+    y = 28;
+    pdf.setFillColor(60, 60, 60);
+    pdf.rect(20, y - 5, 170, 7, 'F');
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFontSize(8);
+    pdf.setFont(undefined, 'bold');
+    pdf.text('#', 22, y);
+    pdf.text('Produk', 30, y);
+    pdf.text('Kategori', 95, y);
+    pdf.text('Terjual', 130, y);
+    pdf.text('Pendapatan', 155, y);
+    
+    y += 8;
+    pdf.setTextColor(30, 30, 30);
+    pdf.setFont(undefined, 'normal');
+    
+    if (top10.length === 0) {
+        pdf.text('Tidak ada data produk', 22, y);
+        y += 6;
+    } else {
+        top10.forEach((p, i) => {
+            if (y > 270) { pdf.addPage(); y = 20; }
+            const bg = i % 2 === 0 ? [250, 250, 250] : [255, 255, 255];
+            pdf.setFillColor(...bg);
+            pdf.rect(20, y - 4, 170, 6, 'F');
+            pdf.text((i + 1).toString(), 22, y);
+            pdf.text(p.nama.substring(0, 35), 30, y);
+            pdf.text(p.kategori.substring(0, 20), 95, y);
+            pdf.text(p.terjual.toFixed(1), 130, y);
+            pdf.text(this.fmtRupiah(p.pendapatan), 155, y);
+            y += 6;
+        });
+    }
+    
+    // ============ FOOTER ============
+    pdf.setDrawColor(100, 100, 100);
+    pdf.line(15, 280, 195, 280);
+    pdf.line(15, 282, 195, 282);
+    
+    pdf.setFontSize(8);
+    pdf.setTextColor(120, 120, 120);
+    pdf.text('Laporan ini dibuat otomatis oleh sistem ' + (s.nama_laundry || 'YENI JAYA LAUNDRY'), 105, 287, { align: 'center' });
+    pdf.text('Dicetak pada: ' + new Date().toLocaleString('id-ID'), 105, 292, { align: 'center' });
+    
+    const fileName = `Laporan_${d.periode.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+    pdf.save(fileName);
+    
+    Swal.fire({ icon: 'success', title: 'PDF berhasil diunduh', timer: 1500 });
+}
 
             uploadLogo(e) {
                 const file = e.target.files[0];
