@@ -21,19 +21,16 @@
             --danger: #EF4444;
             --info: #3B82F6;
             --purple: #8B5CF6;
+            --pink: #EC4899;
             --bg: #F1F5F9;
             --surface: #FFFFFF;
             --text: #1E293B;
             --text-muted: #64748B;
             --border: #E2E8F0;
-            --sidebar-width: 280px;
+            --sidebar-width: 260px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -54,7 +51,7 @@
         }
 
         .sidebar-header {
-            padding: 24px 20px;
+            padding: 20px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
@@ -72,33 +69,32 @@
             color: var(--primary);
             font-weight: 800;
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .brand-text h3 {
             color: white;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 700;
         }
 
         .brand-text p {
             color: rgba(255,255,255,0.8);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
 
-        .nav-menu {
-            padding: 20px 12px;
-        }
+        .nav-menu { padding: 16px 12px; }
 
         .nav-item {
-            padding: 14px 16px;
-            margin-bottom: 6px;
-            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 4px;
+            border-radius: 10px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 12px;
-            color: rgba(255,255,255,0.8);
-            transition: all 0.3s;
+            color: rgba(255,255,255,0.85);
+            transition: all 0.2s;
             font-weight: 500;
             font-size: 0.9rem;
         }
@@ -106,7 +102,6 @@
         .nav-item:hover {
             background: rgba(255,255,255,0.15);
             color: white;
-            transform: translateX(4px);
         }
 
         .nav-item.active {
@@ -115,11 +110,7 @@
             font-weight: 600;
         }
 
-        .nav-item i {
-            width: 22px;
-            text-align: center;
-            font-size: 1.1rem;
-        }
+        .nav-item i { width: 20px; text-align: center; }
 
         /* Main Content */
         .main-content {
@@ -130,7 +121,7 @@
         /* Topbar */
         .topbar {
             background: var(--surface);
-            padding: 20px 32px;
+            padding: 16px 24px;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
@@ -142,118 +133,86 @@
         }
 
         .page-title h2 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--text);
         }
 
         .page-title p {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             margin-top: 2px;
         }
 
         .topbar-actions {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
         }
 
         .sync-badge {
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 6px;
         }
 
-        .sync-connected {
-            background: rgba(16,185,129,0.15);
-            color: var(--success);
-        }
-
-        .sync-disconnected {
-            background: rgba(239,68,68,0.15);
-            color: var(--danger);
-        }
+        .sync-connected { background: rgba(16,185,129,0.15); color: var(--success); }
+        .sync-disconnected { background: rgba(239,68,68,0.15); color: var(--danger); }
+        .sync-syncing { background: rgba(245,158,11,0.15); color: var(--warning); }
 
         /* Buttons */
         .btn {
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 10px;
             border: none;
             font-weight: 600;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
+            gap: 6px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
             font-family: inherit;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(99,102,241,0.3);
-        }
-
-        .btn-success {
-            background: var(--success);
-            color: white;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-
-        .btn-outline:hover {
-            background: var(--bg);
-        }
-
-        .btn-sm {
-            padding: 6px 12px;
-            font-size: 0.8rem;
-        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-success:hover { background: #059669; }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+        .btn-outline:hover { background: var(--bg); }
+        .btn-sm { padding: 6px 12px; font-size: 0.8rem; }
 
         /* Content */
-        .content {
-            padding: 32px;
-        }
+        .content { padding: 24px; }
 
         /* KPI Grid */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
         .kpi-card {
             background: var(--surface);
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
 
         .kpi-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         .kpi-card::before {
@@ -263,41 +222,42 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: var(--primary);
         }
 
         .kpi-card.success::before { background: var(--success); }
         .kpi-card.warning::before { background: var(--warning); }
         .kpi-card.danger::before { background: var(--danger); }
         .kpi-card.info::before { background: var(--info); }
+        .kpi-card.primary::before { background: var(--primary); }
+        .kpi-card.purple::before { background: var(--purple); }
 
         .kpi-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 14px;
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             flex-shrink: 0;
         }
 
         .kpi-content h4 {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             font-weight: 500;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .kpi-content h3 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--text);
         }
 
         .kpi-trend {
-            font-size: 0.8rem;
-            margin-top: 6px;
+            font-size: 0.75rem;
+            margin-top: 4px;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -309,51 +269,41 @@
         /* Cards */
         .card {
             background: var(--surface);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .card-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--text);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         /* Charts */
         .chart-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 24px;
-            margin-bottom: 24px;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
-        .chart-container {
-            position: relative;
-            height: 320px;
-        }
-
-        .chart-mini {
-            position: relative;
-            height: 240px;
-        }
+        .chart-container { position: relative; height: 300px; }
+        .chart-mini { position: relative; height: 220px; }
 
         /* Tables */
-        .table-responsive {
-            overflow-x: auto;
-            border-radius: 12px;
-        }
+        .table-responsive { overflow-x: auto; }
 
         .data-table {
             width: 100%;
@@ -362,30 +312,28 @@
 
         .data-table th {
             text-align: left;
-            padding: 14px 16px;
+            padding: 12px;
             font-weight: 600;
             color: var(--text-muted);
             border-bottom: 2px solid var(--border);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .data-table td {
-            padding: 14px 16px;
+            padding: 12px;
             border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        .data-table tr:hover td {
-            background: rgba(99,102,241,0.03);
-        }
+        .data-table tr:hover td { background: rgba(99,102,241,0.03); }
 
         /* Badges */
         .badge {
-            padding: 5px 12px;
+            padding: 3px 10px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             display: inline-block;
         }
@@ -400,36 +348,35 @@
         .filter-box {
             background: var(--surface);
             padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-radius: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .filter-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
-            font-size: 0.85rem;
+            margin-bottom: 4px;
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--text-muted);
         }
 
         .form-control {
             width: 100%;
-            padding: 10px 14px;
-            border-radius: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
             border: 1px solid var(--border);
             background: var(--bg);
             color: var(--text);
             font-family: inherit;
-            font-size: 0.9rem;
-            transition: all 0.3s;
+            font-size: 0.85rem;
         }
 
         .form-control:focus {
@@ -442,12 +389,12 @@
         .top-item {
             display: flex;
             align-items: center;
-            padding: 14px;
+            padding: 12px;
             background: var(--bg);
-            border-radius: 12px;
-            margin-bottom: 10px;
-            gap: 14px;
-            transition: all 0.3s;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            gap: 12px;
+            transition: all 0.2s;
         }
 
         .top-item:hover {
@@ -456,8 +403,8 @@
         }
 
         .top-rank {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: var(--primary);
             color: white;
@@ -465,7 +412,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             flex-shrink: 0;
         }
 
@@ -473,94 +420,37 @@
         .top-rank.silver { background: linear-gradient(135deg, #9CA3AF, #6B7280); }
         .top-rank.bronze { background: linear-gradient(135deg, #B45309, #92400E); }
 
-        .top-info {
-            flex: 1;
-        }
-
-        .top-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text);
-        }
-
-        .top-meta {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .top-value {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1rem;
-        }
+        .top-info { flex: 1; }
+        .top-name { font-weight: 600; font-size: 0.9rem; }
+        .top-meta { font-size: 0.75rem; color: var(--text-muted); }
+        .top-value { font-weight: 700; font-size: 0.95rem; }
 
         /* View Sections */
-        .view-section {
-            display: none;
-            animation: fadeIn 0.4s;
-        }
-
-        .view-section.active {
-            display: block;
-        }
+        .view-section { display: none; animation: fadeIn 0.3s; }
+        .view-section.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Loading */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
         /* Responsive */
         @media (max-width: 1024px) {
-            .chart-grid {
-                grid-template-columns: 1fr;
-            }
+            .chart-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            .sidebar.open {
-                transform: translateX(0);
-            }
-            .main-content {
-                margin-left: 0;
-            }
-            .kpi-grid {
-                grid-template-columns: 1fr;
-            }
-            .content {
-                padding: 20px;
-            }
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .kpi-grid { grid-template-columns: 1fr; }
+            .content { padding: 16px; }
         }
 
-        /* Print Styles */
         @media print {
-            .sidebar, .topbar, .btn, .filter-box {
-                display: none !important;
-            }
-            .main-content {
-                margin-left: 0;
-            }
-            .card {
-                box-shadow: none;
-                border: 1px solid #ddd;
-            }
+            .sidebar, .topbar, .btn, .filter-box { display: none !important; }
+            .main-content { margin-left: 0; }
+            .card { box-shadow: none; border: 1px solid #ddd; }
         }
     </style>
 </head>
@@ -627,31 +517,17 @@
         <div class="content">
             <!-- DASHBOARD UTAMA -->
             <div id="view-dashboard" class="view-section active">
-                <!-- KPI Grid -->
                 <div class="kpi-grid">
                     <div class="kpi-card success">
                         <div class="kpi-icon" style="background: rgba(16,185,129,0.15); color: var(--success);">
                             <i class="fas fa-money-bill-wave"></i>
                         </div>
                         <div class="kpi-content">
-                            <h4>Omzet Hari Ini</h4>
+                            <h4>Omzet Lunas Hari Ini</h4>
                             <h3 id="kpi-omzet-hari">Rp 0</h3>
                             <div class="kpi-trend" id="trend-hari">
                                 <i class="fas fa-arrow-up trend-up"></i>
                                 <span>0% vs kemarin</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-icon" style="background: rgba(99,102,241,0.15); color: var(--primary);">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <div class="kpi-content">
-                            <h4>Omzet Bulan Ini</h4>
-                            <h3 id="kpi-omzet-bulan">Rp 0</h3>
-                            <div class="kpi-trend" id="trend-bulan">
-                                <i class="fas fa-arrow-up trend-up"></i>
-                                <span>0% vs bulan lalu</span>
                             </div>
                         </div>
                     </div>
@@ -665,6 +541,19 @@
                             <div class="kpi-trend">
                                 <i class="fas fa-exclamation-circle"></i>
                                 <span>Perlu ditagih</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kpi-card primary">
+                        <div class="kpi-icon" style="background: rgba(99,102,241,0.15); color: var(--primary);">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h4>Omzet Lunas Bulan Ini</h4>
+                            <h3 id="kpi-omzet-bulan">Rp 0</h3>
+                            <div class="kpi-trend" id="trend-bulan">
+                                <i class="fas fa-arrow-up trend-up"></i>
+                                <span>0% vs bulan lalu</span>
                             </div>
                         </div>
                     </div>
@@ -685,14 +574,14 @@
                             <i class="fas fa-coins"></i>
                         </div>
                         <div class="kpi-content">
-                            <h4>Laba Bersih</h4>
+                            <h4>Laba Bersih Bulan Ini</h4>
                             <h3 id="kpi-laba">Rp 0</h3>
                             <div class="kpi-trend">
-                                <span>Omzet - Pengeluaran</span>
+                                <span>Omzet Lunas - Pengeluaran</span>
                             </div>
                         </div>
                     </div>
-                    <div class="kpi-card">
+                    <div class="kpi-card purple">
                         <div class="kpi-icon" style="background: rgba(139,92,246,0.15); color: var(--purple);">
                             <i class="fas fa-receipt"></i>
                         </div>
@@ -706,13 +595,12 @@
                     </div>
                 </div>
 
-                <!-- Charts -->
                 <div class="chart-grid">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">
                                 <i class="fas fa-chart-area" style="color: var(--primary);"></i>
-                                Trend Omzet 30 Hari Terakhir
+                                Trend Omzet 7 Hari Terakhir
                             </div>
                         </div>
                         <div class="chart-container">
@@ -732,8 +620,7 @@
                     </div>
                 </div>
 
-                <!-- Top Products & Customers -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <div class="chart-grid">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">
@@ -807,6 +694,7 @@
                                     <th>Tanggal</th>
                                     <th>Invoice</th>
                                     <th>Customer</th>
+                                    <th>No. HP</th>
                                     <th>Item</th>
                                     <th>Total</th>
                                     <th>Metode</th>
@@ -815,7 +703,7 @@
                             </thead>
                             <tbody id="table-penjualan">
                                 <tr>
-                                    <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                                    <td colspan="8" style="text-align: center; padding: 40px; color: var(--text-muted);">
                                         Klik tombol "Tampilkan" untuk melihat data
                                     </td>
                                 </tr>
@@ -850,11 +738,11 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">
-                                <i class="fas fa-percentage"></i> Persentase Market Share
+                                <i class="fas fa-percentage"></i> Market Share Kategori
                             </div>
                         </div>
                         <div class="chart-mini">
-                            <canvas id="chartMarketShare"></canvas>
+                            <canvas id="chartKategori"></canvas>
                         </div>
                     </div>
                 </div>
@@ -906,6 +794,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>No. HP</th>
+                                    <th>Alamat</th>
                                     <th>Total Transaksi</th>
                                     <th>Total Belanja</th>
                                     <th>Rata-rata/Transaksi</th>
@@ -914,7 +803,7 @@
                             </thead>
                             <tbody id="table-customer">
                                 <tr>
-                                    <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                                    <td colspan="8" style="text-align: center; padding: 40px; color: var(--text-muted);">
                                         <i class="fas fa-spinner fa-spin"></i> Memuat data...
                                     </td>
                                 </tr>
@@ -952,13 +841,13 @@
                     </div>
                 </div>
 
-                <div class="kpi-grid" id="keuangan-kpi">
+                <div class="kpi-grid">
                     <div class="kpi-card success">
                         <div class="kpi-icon" style="background: rgba(16,185,129,0.15); color: var(--success);">
                             <i class="fas fa-arrow-up"></i>
                         </div>
                         <div class="kpi-content">
-                            <h4>Total Pendapatan</h4>
+                            <h4>Total Pendapatan (Lunas)</h4>
                             <h3 id="keuangan-pendapatan">Rp 0</h3>
                         </div>
                     </div>
@@ -1010,7 +899,7 @@
                     <div class="filter-grid">
                         <div class="form-group">
                             <label>Jenis Laporan</label>
-                            <select class="form-control" id="laporan-jenis">
+                            <select class="form-control" id="laporan-jenis" onchange="App.toggleLaporanInput()">
                                 <option value="harian">Laporan Harian</option>
                                 <option value="bulanan">Laporan Bulanan</option>
                                 <option value="custom">Custom Period</option>
@@ -1056,10 +945,13 @@
     </div>
 
     <script>
-        // State Management
+        // ============================================================
+        // STATE MANAGEMENT - Baca dari localStorage POS (kunci 'yjl_*')
+        // ============================================================
         const State = {
-            settings: JSON.parse(localStorage.getItem('owner_settings') || '{}'),
+            settings: {},
             transaksi: [],
+            detailTransaksi: [],
             pengeluaran: [],
             customers: [],
             pricelist: [],
@@ -1067,7 +959,53 @@
             charts: {}
         };
 
-        // Google Sheets API
+        // Helper: Baca dari localStorage POS
+        const DB = {
+            get(key, def = []) {
+                try { return JSON.parse(localStorage.getItem('yjl_' + key)) || def; }
+                catch { return def; }
+            }
+        };
+
+        // Helper: Estimasi waktu
+        const EstimasiHelper = {
+            parse(estimasi) {
+                if (!estimasi) return 2 * 24 * 60 * 60 * 1000;
+                const e = String(estimasi).toLowerCase().trim();
+                const hariMatch = e.match(/(\d+)\s*hari/);
+                if (hariMatch) return parseInt(hariMatch[1]) * 24 * 60 * 60 * 1000;
+                const jamMatch = e.match(/(\d+)\s*jam/);
+                if (jamMatch) return parseInt(jamMatch[1]) * 60 * 60 * 1000;
+                const mingguMatch = e.match(/(\d+)\s*minggu/);
+                if (mingguMatch) return parseInt(mingguMatch[1]) * 7 * 24 * 60 * 60 * 1000;
+                return 2 * 24 * 60 * 60 * 1000;
+            },
+            parseCatatan(catatan) {
+                if (!catatan) return null;
+                const str = String(catatan);
+                const hariMatch = str.match(/(\d+)\s*Hari/i);
+                if (hariMatch) return hariMatch[1] + ' Hari';
+                const jamMatch = str.match(/(\d+)\s*Jam/i);
+                if (jamMatch) return jamMatch[1] + ' Jam';
+                return null;
+            },
+            guessKategori(nama) {
+                if (!nama) return 'LAINNYA';
+                const n = nama.toLowerCase();
+                if (n.includes('boneka')) return 'BONEKA';
+                if (n.includes('sprei') || n.includes('bedding')) return 'BEDDING';
+                if (n.includes('karpet')) return 'KARPET & PERMADANI';
+                if (n.includes('gorden')) return 'GORDEN';
+                if (n.includes('tas') || n.includes('koper')) return 'TAS & KOPER';
+                if (n.includes('jas')) return 'JAS';
+                if (n.includes('kiloan') || n.includes('cuci setrika')) return 'KILOAN';
+                return 'LAINNYA';
+            }
+        };
+
+        // ============================================================
+        // GOOGLE SHEETS API
+        // ============================================================
         const SheetsAPI = {
             async fetch(action) {
                 const url = State.settings.gas_url;
@@ -1075,21 +1013,17 @@
                     this.updateStatus('disconnected');
                     return { success: false, data: [] };
                 }
-
                 try {
                     const cleanUrl = url.split('?')[0];
                     const response = await fetch(cleanUrl + '?action=' + action, {
                         method: 'GET',
                         headers: { 'Accept': 'application/json' }
                     });
-
                     if (!response.ok) throw new Error('HTTP ' + response.status);
-
                     const result = await response.json();
                     this.updateStatus('connected');
                     return result;
                 } catch (error) {
-                    console.error('Fetch error:', error);
                     this.updateStatus('disconnected');
                     return { success: false, data: [], error: error.message };
                 }
@@ -1098,27 +1032,20 @@
             updateStatus(status) {
                 const el = document.getElementById('sync-status');
                 if (!el) return;
-                
                 el.className = 'sync-badge sync-' + status;
-                const icons = {
-                    connected: 'check-circle',
-                    disconnected: 'circle',
-                    syncing: 'spinner fa-spin'
-                };
-                const texts = {
-                    connected: 'Connected',
-                    disconnected: 'Offline',
-                    syncing: 'Syncing...'
-                };
-                
+                const icons = { connected: 'check-circle', disconnected: 'circle', syncing: 'spinner fa-spin' };
+                const texts = { connected: 'Connected', disconnected: 'Offline', syncing: 'Syncing...' };
                 el.innerHTML = `<i class="fas fa-${icons[status]}"></i> <span>${texts[status]}</span>`;
             }
         };
 
-        // Main Application
+        // ============================================================
+        // MAIN APP
+        // ============================================================
         const App = {
             async init() {
-                this.loadSettings();
+                // Load dari localStorage POS dulu
+                this.loadFromLocalStorage();
                 
                 // Set default dates
                 const today = new Date().toISOString().split('T')[0];
@@ -1132,18 +1059,32 @@
                 document.getElementById('keuangan-dari').value = today;
                 document.getElementById('keuangan-sampai').value = today;
 
-                // Initial data load
+                // Coba sync dari Google Sheets
                 await this.syncData();
+                
+                // Load dashboard
                 this.loadDashboard();
                 
-                // Auto refresh every 30 seconds
+                // Auto refresh setiap 30 detik
                 setInterval(() => this.syncData(), 30000);
             },
 
-            loadSettings() {
-                const s = State.settings;
-                if (s.nama_laundry) {
-                    document.querySelector('.brand-text h3').textContent = 'OWNER - ' + s.nama_laundry.toUpperCase();
+            loadFromLocalStorage() {
+                State.settings = DB.get('settings', {
+                    nama_laundry: 'YENI JAYA LAUNDRY',
+                    alamat: '-',
+                    whatsapp: '-',
+                    gas_url: 'https://script.google.com/macros/s/AKfycbwA-wPQl7LiPNANKY8ZGVcia6e_l8gcvdjZa-n0grp44LPrnGXv5YLm8-QSky45W7rjHw/exec'
+                });
+                State.transaksi = DB.get('transaksi', []);
+                State.detailTransaksi = DB.get('detailTransaksi', []);
+                State.pengeluaran = DB.get('pengeluaran', []);
+                State.customers = DB.get('customers', []);
+                State.pricelist = DB.get('pricelist', []);
+                
+                // Update brand text
+                if (State.settings.nama_laundry) {
+                    document.querySelector('.brand-text h3').textContent = 'OWNER - ' + State.settings.nama_laundry.toUpperCase();
                 }
             },
 
@@ -1151,24 +1092,25 @@
                 SheetsAPI.updateStatus('syncing');
                 
                 try {
-                    const [trxRes, expRes, custRes, priceRes] = await Promise.all([
+                    const [tRes, dtRes, expRes, custRes, priceRes] = await Promise.all([
                         SheetsAPI.fetch('get_transaksi'),
+                        SheetsAPI.fetch('get_detail_transaksi'),
                         SheetsAPI.fetch('get_pengeluaran'),
                         SheetsAPI.fetch('get_customer'),
                         SheetsAPI.fetch('get_pricelist')
                     ]);
 
-                    if (trxRes.success) State.transaksi = trxRes.data || [];
+                    // Hanya update jika fetch berhasil
+                    if (tRes.success) State.transaksi = tRes.data || [];
+                    if (dtRes.success) State.detailTransaksi = dtRes.data || [];
                     if (expRes.success) State.pengeluaran = expRes.data || [];
                     if (custRes.success) State.customers = custRes.data || [];
                     if (priceRes.success) State.pricelist = priceRes.data || [];
 
-                    // Save to localStorage as backup
-                    localStorage.setItem('owner_transaksi', JSON.stringify(State.transaksi));
-                    localStorage.setItem('owner_pengeluaran', JSON.stringify(State.pengeluaran));
-                    localStorage.setItem('owner_customers', JSON.stringify(State.customers));
+                    // Merge detail ke transaksi
+                    this.mergeDetailToTransaksi();
 
-                    // Refresh current view
+                    // Refresh view yang aktif
                     const activeView = document.querySelector('.view-section.active').id;
                     if (activeView === 'view-dashboard') this.loadDashboard();
                     else if (activeView === 'view-penjualan') this.loadPenjualan();
@@ -1180,28 +1122,42 @@
                 } catch (error) {
                     console.error('Sync error:', error);
                     SheetsAPI.updateStatus('disconnected');
-                    
-                    // Load from localStorage if available
-                    const localTrx = localStorage.getItem('owner_transaksi');
-                    const localExp = localStorage.getItem('owner_pengeluaran');
-                    const localCust = localStorage.getItem('owner_customers');
-                    
-                    if (localTrx) State.transaksi = JSON.parse(localTrx);
-                    if (localExp) State.pengeluaran = JSON.parse(localExp);
-                    if (localCust) State.customers = JSON.parse(localCust);
                 }
             },
 
+            mergeDetailToTransaksi() {
+                State.transaksi.forEach(trx => {
+                    const details = State.detailTransaksi.filter(d => d.invoice === trx.invoice);
+                    if (details.length > 0 && (!trx.items || trx.items.length === 0)) {
+                        trx.items = details;
+                    }
+                    // Hitung estimasi_selesai jika belum ada
+                    if (details.length > 0 && trx.tanggal && !trx.estimasi_selesai) {
+                        const tanggalMulai = new Date(trx.tanggal);
+                        let maxEstimasi = 0;
+                        details.forEach(d => {
+                            const est = EstimasiHelper.parse(d.waktu);
+                            if (est > maxEstimasi) maxEstimasi = est;
+                        });
+                        if (maxEstimasi > 0) {
+                            trx.estimasi_selesai = new Date(tanggalMulai.getTime() + maxEstimasi).toISOString();
+                        }
+                    }
+                    // Ambil No HP dari customer jika kosong
+                    if ((!trx.hp || trx.hp === '-') && trx.customer) {
+                        const cust = State.customers.find(c => c.nama === trx.customer);
+                        if (cust && cust.hp) trx.hp = cust.hp;
+                    }
+                });
+            },
+
             navigate(view, element) {
-                // Hide all sections
                 document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
                 document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
                 
-                // Show target section
                 document.getElementById('view-' + view).classList.add('active');
                 if (element) element.classList.add('active');
                 
-                // Update page title
                 const titles = {
                     dashboard: ['Dashboard Utama', 'Monitor bisnis Anda secara real-time'],
                     penjualan: ['Analisis Penjualan', 'Detail dan trend penjualan'],
@@ -1214,7 +1170,6 @@
                 document.getElementById('page-title').textContent = titles[view][0];
                 document.getElementById('page-subtitle').textContent = titles[view][1];
                 
-                // Load data for specific views
                 if (view === 'dashboard') this.loadDashboard();
                 else if (view === 'penjualan') this.loadPenjualan();
                 else if (view === 'produk') this.loadPerformaLayanan();
@@ -1222,52 +1177,79 @@
                 else if (view === 'keuangan') this.loadLaporanKeuangan();
             },
 
+            // ============================================================
+            // DASHBOARD UTAMA
+            // ============================================================
             loadDashboard() {
                 const now = new Date();
                 const today = now.toDateString();
                 const thisMonth = now.getMonth();
                 const thisYear = now.getFullYear();
 
-                // Filter data
+                // Filter data - HANYA yang BENAR-BENAR LUNAS (punya tanggal_lunas)
                 const hariIni = State.transaksi.filter(t => {
-                    const d = new Date(t.Tanggal || t.tanggal);
-                    return d.toDateString() === today && (t.status_bayar === 'Lunas' || !t.status_bayar);
+                    try { return new Date(t.tanggal).toDateString() === today && t.status_bayar === 'Lunas' && t.tanggal_lunas; }
+                    catch { return false; }
                 });
 
                 const bulanIni = State.transaksi.filter(t => {
-                    const d = new Date(t.Tanggal || t.tanggal);
-                    return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+                    try {
+                        const d = new Date(t.tanggal);
+                        return d.getMonth() === thisMonth && d.getFullYear() === thisYear && t.status_bayar === 'Lunas' && t.tanggal_lunas;
+                    } catch { return false; }
                 });
 
                 const kemarin = new Date();
                 kemarin.setDate(kemarin.getDate() - 1);
                 const dataKemarin = State.transaksi.filter(t => {
-                    const d = new Date(t.Tanggal || t.tanggal);
-                    return d.toDateString() === kemarin.toDateString() && (t.status_bayar === 'Lunas' || !t.status_bayar);
+                    try { return new Date(t.tanggal).toDateString() === kemarin.toDateString() && t.status_bayar === 'Lunas' && t.tanggal_lunas; }
+                    catch { return false; }
                 });
 
-                // Calculate KPIs
-                const omzetHari = hariIni.reduce((sum, t) => sum + (parseFloat(t.Total || t.total) || 0), 0);
-                const omzetBulan = bulanIni.reduce((sum, t) => sum + (parseFloat(t.Total || t.total) || 0), 0);
-                const omzetKemarin = dataKemarin.reduce((sum, t) => sum + (parseFloat(t.Total || t.total) || 0), 0);
-                
-                const piutang = bulanIni.filter(t => t.status_bayar === 'Belum Lunas')
-                    .reduce((sum, t) => sum + (parseFloat(t.Total || t.total) || 0), 0);
-                
+                const bulanLalu = new Date();
+                bulanLalu.setMonth(bulanLalu.getMonth() - 1);
+                const dataBulanLalu = State.transaksi.filter(t => {
+                    try {
+                        const d = new Date(t.tanggal);
+                        return d.getMonth() === bulanLalu.getMonth() && d.getFullYear() === bulanLalu.getFullYear() && t.status_bayar === 'Lunas' && t.tanggal_lunas;
+                    } catch { return false; }
+                });
+
                 const pengeluaranBulan = State.pengeluaran.filter(t => {
-                    const d = new Date(t.Tanggal || t.tanggal);
-                    return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
-                }).reduce((sum, t) => sum + (parseFloat(t.Nominal || t.nominal) || 0), 0);
+                    try {
+                        const d = new Date(t.tanggal);
+                        return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+                    } catch { return false; }
+                }).reduce((sum, t) => sum + (parseFloat(t.nominal) || 0), 0);
+
+                // Calculate KPIs
+                const omzetHari = hariIni.reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
+                const omzetBulan = bulanIni.reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
+                const omzetKemarin = dataKemarin.reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
+                const omzetBulanLalu = dataBulanLalu.reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
+                
+                // Piutang = semua yang belum lunas bulan ini
+                const piutangBulan = State.transaksi.filter(t => {
+                    try {
+                        const d = new Date(t.tanggal);
+                        return d.getMonth() === thisMonth && d.getFullYear() === thisYear && (t.status_bayar !== 'Lunas' || !t.tanggal_lunas);
+                    } catch { return false; }
+                }).reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
 
                 const labaBersih = omzetBulan - pengeluaranBulan;
 
                 // Update KPI displays
                 document.getElementById('kpi-omzet-hari').textContent = this.fmtRupiah(omzetHari);
+                document.getElementById('kpi-piutang').textContent = this.fmtRupiah(piutangBulan);
                 document.getElementById('kpi-omzet-bulan').textContent = this.fmtRupiah(omzetBulan);
-                document.getElementById('kpi-piutang').textContent = this.fmtRupiah(piutang);
                 document.getElementById('kpi-pengeluaran').textContent = this.fmtRupiah(pengeluaranBulan);
                 document.getElementById('kpi-laba').textContent = this.fmtRupiah(labaBersih);
-                document.getElementById('kpi-transaksi').textContent = bulanIni.length;
+                document.getElementById('kpi-transaksi').textContent = State.transaksi.filter(t => {
+                    try {
+                        const d = new Date(t.tanggal);
+                        return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+                    } catch { return false; }
+                }).length;
 
                 // Calculate trends
                 const trendHari = omzetKemarin > 0 ? ((omzetHari - omzetKemarin) / omzetKemarin * 100).toFixed(1) : 0;
@@ -1275,6 +1257,13 @@
                 document.getElementById('trend-hari').innerHTML = `
                     <i class="fas fa-${trendIconHari}"></i>
                     <span>${trendHari >= 0 ? '+' : ''}${trendHari}% vs kemarin</span>
+                `;
+
+                const trendBulan = omzetBulanLalu > 0 ? ((omzetBulan - omzetBulanLalu) / omzetBulanLalu * 100).toFixed(1) : 0;
+                const trendIconBulan = trendBulan >= 0 ? 'arrow-up trend-up' : 'arrow-down trend-down';
+                document.getElementById('trend-bulan').innerHTML = `
+                    <i class="fas fa-${trendIconBulan}"></i>
+                    <span>${trendBulan >= 0 ? '+' : ''}${trendBulan}% vs bulan lalu</span>
                 `;
 
                 // Render charts
@@ -1291,66 +1280,69 @@
                 if (State.charts.trend) State.charts.trend.destroy();
 
                 const labels = [];
-                const data = [];
+                const dataLunas = [];
+                const dataBelumLunas = [];
 
-                for (let i = 29; i >= 0; i--) {
+                for (let i = 6; i >= 0; i--) {
                     const d = new Date();
                     d.setDate(d.getDate() - i);
                     labels.push(d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short' }));
 
-                    const dayData = State.transaksi.filter(t => {
-                        const td = new Date(t.Tanggal || t.tanggal);
-                        return td.toDateString() === d.toDateString() && (t.status_bayar === 'Lunas' || !t.status_bayar);
+                    const dayTrx = State.transaksi.filter(t => {
+                        try { return new Date(t.tanggal).toDateString() === d.toDateString(); }
+                        catch { return false; }
                     });
 
-                    const total = dayData.reduce((sum, t) => sum + (parseFloat(t.Total || t.total) || 0), 0);
-                    data.push(total);
+                    const lunas = dayTrx.filter(t => t.status_bayar === 'Lunas' && t.tanggal_lunas)
+                        .reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
+                    const belumLunas = dayTrx.filter(t => t.status_bayar !== 'Lunas' || !t.tanggal_lunas)
+                        .reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
+
+                    dataLunas.push(lunas);
+                    dataBelumLunas.push(belumLunas);
                 }
 
                 State.charts.trend = new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: labels,
-                        datasets: [{
-                            label: 'Omzet',
-                            data: data,
-                            borderColor: '#6366F1',
-                            backgroundColor: 'rgba(99,102,241,0.1)',
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 4,
-                            pointBackgroundColor: '#6366F1',
-                            pointBorderColor: '#fff',
-                            pointBorderWidth: 2,
-                            pointHoverRadius: 6
-                        }]
+                        datasets: [
+                            {
+                                label: 'Sudah Lunas',
+                                data: dataLunas,
+                                backgroundColor: '#10B981',
+                                borderRadius: 4
+                            },
+                            {
+                                label: 'Belum Lunas',
+                                data: dataBelumLunas,
+                                backgroundColor: '#F59E0B',
+                                borderRadius: 4
+                            }
+                        ]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { display: false },
+                            legend: { position: 'top' },
                             tooltip: {
-                                mode: 'index',
-                                intersect: false,
                                 callbacks: {
                                     label: function(context) {
-                                        return 'Rp ' + context.parsed.y.toLocaleString('id-ID');
+                                        return context.dataset.label + ': Rp ' + context.parsed.y.toLocaleString('id-ID');
                                     }
                                 }
                             }
                         },
                         scales: {
+                            x: { stacked: true },
                             y: {
-                                beginAtZero: true,
+                                stacked: true,
                                 ticks: {
                                     callback: function(value) {
                                         return 'Rp ' + (value / 1000).toFixed(0) + 'k';
                                     }
                                 }
-                            },
-                            x: {
-                                grid: { display: false }
                             }
                         }
                     }
@@ -1364,15 +1356,14 @@
                 if (State.charts.pie) State.charts.pie.destroy();
 
                 const categoryStats = {};
-                State.transaksi.filter(t => t.status_bayar === 'Lunas' || !t.status_bayar).forEach(t => {
-                    if (t.items && Array.isArray(t.items)) {
-                        t.items.forEach(item => {
-                            const kat = item.Kategori || item.kategori || 'Lainnya';
-                            if (!categoryStats[kat]) categoryStats[kat] = 0;
-                            categoryStats[kat] += parseFloat(item.Subtotal || item.subtotal) || 0;
-                        });
+                State.detailTransaksi.forEach(d => {
+                    const kat = d.kategori || EstimasiHelper.guessKategori(d.nama);
+                    if (kat) {
+                        categoryStats[kat] = (categoryStats[kat] || 0) + (parseFloat(d.subtotal) || 0);
                     }
                 });
+
+                const colors = ['#6366F1', '#14B8A6', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899', '#10B981', '#3B82F6'];
 
                 State.charts.pie = new Chart(ctx, {
                     type: 'doughnut',
@@ -1380,10 +1371,7 @@
                         labels: Object.keys(categoryStats),
                         datasets: [{
                             data: Object.values(categoryStats),
-                            backgroundColor: [
-                                '#6366F1', '#14B8A6', '#F59E0B', '#EF4444', 
-                                '#8B5CF6', '#EC4899', '#10B981', '#3B82F6'
-                            ],
+                            backgroundColor: colors,
                             borderWidth: 0,
                             hoverOffset: 10
                         }]
@@ -1397,7 +1385,7 @@
                                 labels: {
                                     boxWidth: 12,
                                     font: { size: 10 },
-                                    padding: 15
+                                    padding: 12
                                 }
                             }
                         },
@@ -1408,25 +1396,33 @@
 
             renderTopLayanan(bulanIni) {
                 const stats = {};
-                bulanIni.filter(t => t.status_bayar === 'Lunas' || !t.status_bayar).forEach(t => {
-                    if (t.items && Array.isArray(t.items)) {
-                        t.items.forEach(item => {
-                            const nama = item.Nama || item.nama || 'Unknown';
-                            if (!stats[nama]) {
-                                stats[nama] = {
-                                    nama: nama,
-                                    kategori: item.Kategori || item.kategori || '-',
-                                    terjual: 0,
-                                    pendapatan: 0
-                                };
-                            }
-                            stats[nama].terjual += parseFloat(item.Berat || item.berat) || 1;
-                            stats[nama].pendapatan += parseFloat(item.Subtotal || item.subtotal) || 0;
-                        });
+                
+                // Dari detail transaksi bulan ini
+                const invoicesBulanIni = new Set(bulanIni.map(t => t.invoice));
+                State.detailTransaksi.forEach(d => {
+                    if (invoicesBulanIni.has(d.invoice)) {
+                        const nama = d.nama;
+                        if (nama && nama !== 'Unknown') {
+                            stats[nama] = (stats[nama] || 0) + (parseFloat(d.subtotal) || 0);
+                        }
                     }
                 });
 
-                const top5 = Object.values(stats).sort((a, b) => b.pendapatan - a.pendapatan).slice(0, 5);
+                // Fallback: dari items di transaksi
+                if (Object.keys(stats).length === 0) {
+                    bulanIni.forEach(t => {
+                        if (t.items && Array.isArray(t.items)) {
+                            t.items.forEach(item => {
+                                const nama = item.nama;
+                                if (nama && nama !== 'Unknown') {
+                                    stats[nama] = (stats[nama] || 0) + (parseFloat(item.subtotal) || 0);
+                                }
+                            });
+                        }
+                    });
+                }
+
+                const top5 = Object.entries(stats).sort((a, b) => b[1] - a[1]).slice(0, 5);
                 const container = document.getElementById('top-layanan');
 
                 if (top5.length === 0) {
@@ -1440,10 +1436,9 @@
                         <div class="top-item">
                             <div class="top-rank ${rankClass}">${i + 1}</div>
                             <div class="top-info">
-                                <div class="top-name">${p.nama}</div>
-                                <div class="top-meta">${p.kategori}</div>
+                                <div class="top-name">${p[0]}</div>
                             </div>
-                            <div class="top-value">${this.fmtRupiah(p.pendapatan)}</div>
+                            <div class="top-value" style="color: var(--primary);">${this.fmtRupiah(p[1])}</div>
                         </div>
                     `;
                 }).join('');
@@ -1451,21 +1446,14 @@
 
             renderTopCustomer(bulanIni) {
                 const stats = {};
-                bulanIni.filter(t => t.status_bayar === 'Lunas' || !t.status_bayar).forEach(t => {
-                    const nama = t.Customer || t.customer || 'Unknown';
-                    if (!stats[nama]) {
-                        stats[nama] = {
-                            nama: nama,
-                            hp: t.HP || t.hp || '-',
-                            count: 0,
-                            total: 0
-                        };
+                bulanIni.forEach(t => {
+                    const nama = t.customer;
+                    if (nama && nama !== 'Unknown') {
+                        stats[nama] = (stats[nama] || 0) + (parseFloat(t.total) || 0);
                     }
-                    stats[nama].count += 1;
-                    stats[nama].total += parseFloat(t.Total || t.total) || 0;
                 });
 
-                const top5 = Object.values(stats).sort((a, b) => b.total - a.total).slice(0, 5);
+                const top5 = Object.entries(stats).sort((a, b) => b[1] - a[1]).slice(0, 5);
                 const container = document.getElementById('top-customer');
 
                 if (top5.length === 0) {
@@ -1479,15 +1467,17 @@
                         <div class="top-item">
                             <div class="top-rank ${rankClass}">${i + 1}</div>
                             <div class="top-info">
-                                <div class="top-name">${c.nama}</div>
-                                <div class="top-meta"><i class="fas fa-phone"></i> ${c.hp}</div>
+                                <div class="top-name">${c[0]}</div>
                             </div>
-                            <div class="top-value">${this.fmtRupiah(c.total)}</div>
+                            <div class="top-value" style="color: var(--secondary);">${this.fmtRupiah(c[1])}</div>
                         </div>
                     `;
                 }).join('');
             },
 
+            // ============================================================
+            // ANALISIS PENJUALAN
+            // ============================================================
             toggleFilterInput() {
                 const val = document.getElementById('filter-periode').value;
                 document.getElementById('input-dari').style.display = val === 'custom' ? 'block' : 'none';
@@ -1502,93 +1492,107 @@
                 if (periode === 'hari') {
                     const today = now.toDateString();
                     filtered = State.transaksi.filter(t => {
-                        const d = new Date(t.Tanggal || t.tanggal);
-                        return d.toDateString() === today;
+                        try { return new Date(t.tanggal).toDateString() === today; }
+                        catch { return false; }
                     });
                 } else if (periode === 'kemarin') {
                     const yesterday = new Date();
                     yesterday.setDate(yesterday.getDate() - 1);
                     filtered = State.transaksi.filter(t => {
-                        const d = new Date(t.Tanggal || t.tanggal);
-                        return d.toDateString() === yesterday.toDateString();
+                        try { return new Date(t.tanggal).toDateString() === yesterday.toDateString(); }
+                        catch { return false; }
                     });
                 } else if (periode === 'minggu') {
                     const weekAgo = new Date();
                     weekAgo.setDate(weekAgo.getDate() - 7);
                     filtered = State.transaksi.filter(t => {
-                        const d = new Date(t.Tanggal || t.tanggal);
-                        return d >= weekAgo;
+                        try { return new Date(t.tanggal) >= weekAgo; }
+                        catch { return false; }
                     });
                 } else if (periode === 'bulan') {
                     const thisMonth = now.getMonth();
                     const thisYear = now.getFullYear();
                     filtered = State.transaksi.filter(t => {
-                        const d = new Date(t.Tanggal || t.tanggal);
-                        return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+                        try {
+                            const d = new Date(t.tanggal);
+                            return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+                        } catch { return false; }
                     });
                 } else if (periode === 'custom') {
                     const dari = new Date(document.getElementById('filter-dari').value);
                     const sampai = new Date(document.getElementById('filter-sampai').value);
                     sampai.setHours(23, 59, 59);
                     filtered = State.transaksi.filter(t => {
-                        const d = new Date(t.Tanggal || t.tanggal);
-                        return d >= dari && d <= sampai;
+                        try {
+                            const d = new Date(t.tanggal);
+                            return d >= dari && d <= sampai;
+                        } catch { return false; }
                     });
                 }
 
                 const tbody = document.getElementById('table-penjualan');
                 if (filtered.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted);">Tidak ada data</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 40px; color: var(--text-muted);">Tidak ada data</td></tr>';
                 } else {
                     tbody.innerHTML = filtered.map(t => {
                         const itemsCount = t.items ? (Array.isArray(t.items) ? t.items.length : 1) : 1;
-                        const statusClass = (t.status_bayar || 'Belum Lunas') === 'Lunas' ? 'badge-success' : 'badge-warning';
+                        const isLunas = t.status_bayar === 'Lunas' && t.tanggal_lunas;
+                        const statusClass = isLunas ? 'badge-success' : 'badge-warning';
+                        const statusText = isLunas ? 'Lunas' : 'Belum Lunas';
                         return `
                             <tr>
-                                <td>${this.formatDate(t.Tanggal || t.tanggal)}</td>
-                                <td><span class="badge badge-primary">${t.Invoice || t.invoice}</span></td>
+                                <td>${this.formatDate(t.tanggal)}</td>
+                                <td><span class="badge badge-primary">${t.invoice}</span></td>
                                 <td>
-                                    <div style="font-weight: 600;">${t.Customer || t.customer}</div>
-                                    <small style="color: var(--text-muted);">${t.HP || t.hp || '-'}</small>
+                                    <div style="font-weight: 600;">${t.customer}</div>
                                 </td>
+                                <td>${t.hp || '-'}</td>
                                 <td>${itemsCount} item</td>
-                                <td style="font-weight: 700; color: var(--primary);">${this.fmtRupiah(parseFloat(t.Total || t.total) || 0)}</td>
-                                <td>${t.Metode || t.metode || 'Cash'}</td>
-                                <td><span class="badge ${statusClass}">${t.status_bayar || 'Belum Lunas'}</span></td>
+                                <td style="font-weight: 700; color: var(--primary);">${this.fmtRupiah(parseFloat(t.total) || 0)}</td>
+                                <td>${t.metode || 'Cash'}</td>
+                                <td><span class="badge ${statusClass}">${statusText}</span></td>
                             </tr>
                         `;
                     }).join('');
                 }
             },
 
+            // ============================================================
+            // PERFORMA LAYANAN
+            // ============================================================
             loadPerformaLayanan() {
                 const bulan = document.getElementById('produk-bulan').value;
                 const [year, month] = bulan.split('-');
 
-                const monthData = State.transaksi.filter(t => {
-                    const d = new Date(t.Tanggal || t.tanggal);
-                    return d.getFullYear() == year && (d.getMonth() + 1) == parseInt(month);
-                });
+                // Ambil invoice yang ada di bulan ini
+                const invoicesBulanIni = new Set(
+                    State.transaksi.filter(t => {
+                        try {
+                            const d = new Date(t.tanggal);
+                            return d.getFullYear() == year && (d.getMonth() + 1) == parseInt(month);
+                        } catch { return false; }
+                    }).map(t => t.invoice)
+                );
 
+                const monthDetails = State.detailTransaksi.filter(d => invoicesBulanIni.has(d.invoice));
+                
                 const stats = {};
                 let totalPendapatan = 0;
 
-                monthData.filter(t => t.status_bayar === 'Lunas' || !t.status_bayar).forEach(t => {
-                    if (t.items && Array.isArray(t.items)) {
-                        t.items.forEach(item => {
-                            const nama = item.Nama || item.nama || 'Unknown';
-                            if (!stats[nama]) {
-                                stats[nama] = {
-                                    nama: nama,
-                                    kategori: item.Kategori || item.kategori || '-',
-                                    terjual: 0,
-                                    pendapatan: 0
-                                };
-                            }
-                            stats[nama].terjual += parseFloat(item.Berat || item.berat) || 1;
-                            stats[nama].pendapatan += parseFloat(item.Subtotal || item.subtotal) || 0;
-                            totalPendapatan += parseFloat(item.Subtotal || item.subtotal) || 0;
-                        });
+                monthDetails.forEach(d => {
+                    const nama = d.nama;
+                    if (nama && nama !== 'Unknown') {
+                        if (!stats[nama]) {
+                            stats[nama] = {
+                                nama: nama,
+                                kategori: d.kategori || EstimasiHelper.guessKategori(nama),
+                                terjual: 0,
+                                pendapatan: 0
+                            };
+                        }
+                        stats[nama].terjual += parseFloat(d.berat) || 1;
+                        stats[nama].pendapatan += parseFloat(d.subtotal) || 0;
+                        totalPendapatan += parseFloat(d.subtotal) || 0;
                     }
                 });
 
@@ -1603,9 +1607,9 @@
                         const percentage = totalPendapatan > 0 ? ((p.pendapatan / totalPendapatan) * 100).toFixed(1) : 0;
                         return `
                             <tr>
-                                <td><span class="badge badge-${i < 3 ? 'primary' : 'info'}">#${i + 1}</span></td>
+                                <td><span class="badge badge-primary">#${i + 1}</span></td>
                                 <td style="font-weight: 600;">${p.nama}</td>
-                                <td>${p.kategori}</td>
+                                <td><span class="badge badge-info">${p.kategori}</span></td>
                                 <td>${p.terjual.toFixed(1)}</td>
                                 <td style="font-weight: 700; color: var(--primary);">${this.fmtRupiah(p.pendapatan)}</td>
                                 <td>${percentage}%</td>
@@ -1616,7 +1620,7 @@
 
                 // Render charts
                 this.renderLayananChart(top10);
-                this.renderMarketShareChart(stats, totalPendapatan);
+                this.renderKategoriChart(monthDetails);
             },
 
             renderLayananChart(top10) {
@@ -1633,8 +1637,7 @@
                             label: 'Pendapatan',
                             data: top10.map(p => p.pendapatan),
                             backgroundColor: '#6366F1',
-                            borderRadius: 8,
-                            borderSkipped: false
+                            borderRadius: 8
                         }]
                     },
                     options: {
@@ -1659,32 +1662,35 @@
                                     }
                                 }
                             },
-                            x: {
-                                grid: { display: false }
-                            }
+                            x: { grid: { display: false } }
                         }
                     }
                 });
             },
 
-            renderMarketShareChart(stats, total) {
-                const ctx = document.getElementById('chartMarketShare');
+            renderKategoriChart(details) {
+                const ctx = document.getElementById('chartKategori');
                 if (!ctx) return;
 
-                if (State.charts.market) State.charts.market.destroy();
+                if (State.charts.kategori) State.charts.kategori.destroy();
 
-                const top5 = Object.values(stats).sort((a, b) => b.pendapatan - a.pendapatan).slice(0, 5);
-                const others = total - top5.reduce((sum, p) => sum + p.pendapatan, 0);
+                const katStats = {};
+                details.forEach(d => {
+                    const kat = d.kategori || EstimasiHelper.guessKategori(d.nama);
+                    if (kat) {
+                        katStats[kat] = (katStats[kat] || 0) + (parseFloat(d.subtotal) || 0);
+                    }
+                });
 
-                State.charts.market = new Chart(ctx, {
+                const colors = ['#6366F1', '#14B8A6', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899', '#10B981', '#3B82F6'];
+
+                State.charts.kategori = new Chart(ctx, {
                     type: 'pie',
                     data: {
-                        labels: [...top5.map(p => p.nama.substring(0, 15)), 'Lainnya'],
+                        labels: Object.keys(katStats),
                         datasets: [{
-                            data: [...top5.map(p => p.pendapatan), others],
-                            backgroundColor: [
-                                '#6366F1', '#14B8A6', '#F59E0B', '#EF4444', '#8B5CF6', '#94A3B8'
-                            ],
+                            data: Object.values(katStats),
+                            backgroundColor: colors,
                             borderWidth: 0
                         }]
                     },
@@ -1704,27 +1710,42 @@
                 });
             },
 
+            // ============================================================
+            // DATA CUSTOMER
+            // ============================================================
             loadCustomerData() {
-                const search = document.getElementById('search-customer').value.toLowerCase();
+                const search = (document.getElementById('search-customer').value || '').toLowerCase();
                 
                 const customerStats = {};
                 
-                State.transaksi.filter(t => t.status_bayar === 'Lunas' || !t.status_bayar).forEach(t => {
-                    const nama = t.Customer || t.customer || 'Unknown';
-                    if (!customerStats[nama]) {
-                        customerStats[nama] = {
-                            nama: nama,
-                            hp: t.HP || t.hp || '-',
-                            count: 0,
-                            total: 0,
-                            lastOrder: null
-                        };
+                State.transaksi.forEach(t => {
+                    const nama = t.customer;
+                    if (nama && nama !== 'Unknown') {
+                        if (!customerStats[nama]) {
+                            customerStats[nama] = {
+                                nama: nama,
+                                hp: t.hp || '-',
+                                alamat: '-',
+                                count: 0,
+                                total: 0,
+                                lastOrder: null
+                            };
+                        }
+                        customerStats[nama].count += 1;
+                        customerStats[nama].total += parseFloat(t.total) || 0;
+                        const orderDate = new Date(t.tanggal);
+                        if (!customerStats[nama].lastOrder || orderDate > customerStats[nama].lastOrder) {
+                            customerStats[nama].lastOrder = orderDate;
+                        }
+                        if (t.hp && t.hp !== '-') customerStats[nama].hp = t.hp;
                     }
-                    customerStats[nama].count += 1;
-                    customerStats[nama].total += parseFloat(t.Total || t.total) || 0;
-                    const orderDate = new Date(t.Tanggal || t.tanggal);
-                    if (!customerStats[nama].lastOrder || orderDate > customerStats[nama].lastOrder) {
-                        customerStats[nama].lastOrder = orderDate;
+                });
+
+                // Merge dengan data customer dari database
+                State.customers.forEach(c => {
+                    if (c.nama && customerStats[c.nama]) {
+                        customerStats[c.nama].hp = c.hp || customerStats[c.nama].hp;
+                        customerStats[c.nama].alamat = c.alamat || '-';
                     }
                 });
 
@@ -1741,7 +1762,7 @@
 
                 const tbody = document.getElementById('table-customer');
                 if (customers.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted);">Tidak ada data</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 40px; color: var(--text-muted);">Tidak ada data</td></tr>';
                 } else {
                     tbody.innerHTML = customers.map((c, i) => {
                         const avgTransaksi = c.count > 0 ? c.total / c.count : 0;
@@ -1750,6 +1771,7 @@
                                 <td>${i + 1}</td>
                                 <td style="font-weight: 600;">${c.nama}</td>
                                 <td>${c.hp}</td>
+                                <td>${c.alamat}</td>
                                 <td>${c.count}x</td>
                                 <td style="font-weight: 700; color: var(--primary);">${this.fmtRupiah(c.total)}</td>
                                 <td>${this.fmtRupiah(avgTransaksi)}</td>
@@ -1764,6 +1786,9 @@
                 this.loadCustomerData();
             },
 
+            // ============================================================
+            // LAPORAN KEUANGAN
+            // ============================================================
             toggleKeuanganInput() {
                 const val = document.getElementById('keuangan-periode').value;
                 document.getElementById('keuangan-dari-input').style.display = val === 'custom' ? 'block' : 'none';
@@ -1784,19 +1809,23 @@
                 }
                 endDate.setHours(23, 59, 59);
 
-                // Filter transaksi
+                // Filter transaksi yang LUNAS saja
                 const filteredTransaksi = State.transaksi.filter(t => {
-                    const d = new Date(t.Tanggal || t.tanggal);
-                    return d >= startDate && d <= endDate && (t.status_bayar === 'Lunas' || !t.status_bayar);
+                    try {
+                        const d = new Date(t.tanggal);
+                        return d >= startDate && d <= endDate && t.status_bayar === 'Lunas' && t.tanggal_lunas;
+                    } catch { return false; }
                 });
 
                 const filteredPengeluaran = State.pengeluaran.filter(t => {
-                    const d = new Date(t.Tanggal || t.tanggal);
-                    return d >= startDate && d <= endDate;
+                    try {
+                        const d = new Date(t.tanggal);
+                        return d >= startDate && d <= endDate;
+                    } catch { return false; }
                 });
 
-                const totalPendapatan = filteredTransaksi.reduce((sum, t) => sum + (parseFloat(t.Total || t.total) || 0), 0);
-                const totalPengeluaran = filteredPengeluaran.reduce((sum, t) => sum + (parseFloat(t.Nominal || t.nominal) || 0), 0);
+                const totalPendapatan = filteredTransaksi.reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
+                const totalPengeluaran = filteredPengeluaran.reduce((sum, t) => sum + (parseFloat(t.nominal) || 0), 0);
                 const labaBersih = totalPendapatan - totalPengeluaran;
                 const marginProfit = totalPendapatan > 0 ? ((labaBersih / totalPendapatan) * 100).toFixed(1) : 0;
 
@@ -1820,20 +1849,20 @@
                 const incomeData = [];
                 const expenseData = [];
 
-                for (let i = 0; i <= days; i++) {
+                for (let i = 0; i <= Math.min(days, 30); i++) {
                     const date = new Date(startDate);
                     date.setDate(date.getDate() + i);
                     labels.push(date.toLocaleDateString('id-ID', { day: '2-digit', month: 'short' }));
 
                     const dayIncome = transaksi.filter(t => {
-                        const d = new Date(t.Tanggal || t.tanggal);
-                        return d.toDateString() === date.toDateString();
-                    }).reduce((sum, t) => sum + (parseFloat(t.Total || t.total) || 0), 0);
+                        try { return new Date(t.tanggal).toDateString() === date.toDateString(); }
+                        catch { return false; }
+                    }).reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
 
                     const dayExpense = pengeluaran.filter(t => {
-                        const d = new Date(t.Tanggal || t.tanggal);
-                        return d.toDateString() === date.toDateString();
-                    }).reduce((sum, t) => sum + (parseFloat(t.Nominal || t.nominal) || 0), 0);
+                        try { return new Date(t.tanggal).toDateString() === date.toDateString(); }
+                        catch { return false; }
+                    }).reduce((sum, t) => sum + (parseFloat(t.nominal) || 0), 0);
 
                     incomeData.push(dayIncome);
                     expenseData.push(dayExpense);
@@ -1845,7 +1874,7 @@
                         labels: labels,
                         datasets: [
                             {
-                                label: 'Pendapatan',
+                                label: 'Pendapatan (Lunas)',
                                 data: incomeData,
                                 borderColor: '#10B981',
                                 backgroundColor: 'rgba(16,185,129,0.1)',
@@ -1866,9 +1895,7 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: {
-                                position: 'top'
-                            }
+                            legend: { position: 'top' }
                         },
                         scales: {
                             y: {
@@ -1884,6 +1911,9 @@
                 });
             },
 
+            // ============================================================
+            // CETAK LAPORAN PDF
+            // ============================================================
             toggleLaporanInput() {
                 const val = document.getElementById('laporan-jenis').value;
                 document.getElementById('laporan-tanggal-input').style.display = val === 'harian' ? 'block' : 'none';
@@ -1918,17 +1948,24 @@
                 }
 
                 const filteredTransaksi = State.transaksi.filter(t => {
-                    const d = new Date(t.Tanggal || t.tanggal);
-                    return d >= startDate && d <= endDate;
+                    try {
+                        const d = new Date(t.tanggal);
+                        return d >= startDate && d <= endDate;
+                    } catch { return false; }
                 });
 
                 const filteredPengeluaran = State.pengeluaran.filter(t => {
-                    const d = new Date(t.Tanggal || t.tanggal);
-                    return d >= startDate && d <= endDate;
+                    try {
+                        const d = new Date(t.tanggal);
+                        return d >= startDate && d <= endDate;
+                    } catch { return false; }
                 });
 
-                const totalOmzet = filteredTransaksi.reduce((sum, t) => sum + (parseFloat(t.Total || t.total) || 0), 0);
-                const totalPengeluaran = filteredPengeluaran.reduce((sum, t) => sum + (parseFloat(t.Nominal || t.nominal) || 0), 0);
+                const totalOmzet = filteredTransaksi.filter(t => t.status_bayar === 'Lunas' && t.tanggal_lunas)
+                    .reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
+                const totalPiutang = filteredTransaksi.filter(t => t.status_bayar !== 'Lunas' || !t.tanggal_lunas)
+                    .reduce((sum, t) => sum + (parseFloat(t.total) || 0), 0);
+                const totalPengeluaran = filteredPengeluaran.reduce((sum, t) => sum + (parseFloat(t.nominal) || 0), 0);
                 const labaBersih = totalOmzet - totalPengeluaran;
 
                 State.currentLaporan = {
@@ -1936,6 +1973,7 @@
                     transaksi: filteredTransaksi,
                     pengeluaran: filteredPengeluaran,
                     totalOmzet,
+                    totalPiutang,
                     totalPengeluaran,
                     labaBersih
                 };
@@ -1944,18 +1982,22 @@
                 document.getElementById('laporan-content').innerHTML = `
                     <div style="padding: 20px; background: var(--bg); border-radius: 12px; margin-bottom: 20px;">
                         <h4 style="margin-bottom: 16px; color: var(--primary);">Ringkasan Keuangan - ${periodeText}</h4>
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
-                            <div style="background: white; padding: 16px; border-radius: 10px; text-align: center;">
-                                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Total Omzet</div>
-                                <div style="font-size: 1.4rem; font-weight: 700; color: var(--success);">${this.fmtRupiah(totalOmzet)}</div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                            <div style="background: white; padding: 16px; border-radius: 10px; border-left: 4px solid var(--success);">
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Omzet Lunas</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; color: var(--success);">${this.fmtRupiah(totalOmzet)}</div>
                             </div>
-                            <div style="background: white; padding: 16px; border-radius: 10px; text-align: center;">
-                                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Total Pengeluaran</div>
-                                <div style="font-size: 1.4rem; font-weight: 700; color: var(--danger);">${this.fmtRupiah(totalPengeluaran)}</div>
+                            <div style="background: white; padding: 16px; border-radius: 10px; border-left: 4px solid var(--warning);">
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Piutang</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; color: var(--warning);">${this.fmtRupiah(totalPiutang)}</div>
                             </div>
-                            <div style="background: white; padding: 16px; border-radius: 10px; text-align: center;">
-                                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Laba Bersih</div>
-                                <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary);">${this.fmtRupiah(labaBersih)}</div>
+                            <div style="background: white; padding: 16px; border-radius: 10px; border-left: 4px solid var(--danger);">
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Pengeluaran</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; color: var(--danger);">${this.fmtRupiah(totalPengeluaran)}</div>
+                            </div>
+                            <div style="background: white; padding: 16px; border-radius: 10px; border-left: 4px solid var(--primary);">
+                                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Laba Bersih</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; color: var(--primary);">${this.fmtRupiah(labaBersih)}</div>
                             </div>
                         </div>
                     </div>
@@ -1968,21 +2010,26 @@
                                         <th>Tanggal</th>
                                         <th>Invoice</th>
                                         <th>Customer</th>
+                                        <th>No. HP</th>
                                         <th>Total</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    ${filteredTransaksi.length === 0 ? '<tr><td colspan="5" style="text-align: center; padding: 20px;">Tidak ada data</td></tr>' : 
-                                    filteredTransaksi.map(t => `
-                                        <tr>
-                                            <td>${this.formatDate(t.Tanggal || t.tanggal)}</td>
-                                            <td>${t.Invoice || t.invoice}</td>
-                                            <td>${t.Customer || t.customer}</td>
-                                            <td>${this.fmtRupiah(parseFloat(t.Total || t.total) || 0)}</td>
-                                            <td><span class="badge ${(t.status_bayar || 'Belum Lunas') === 'Lunas' ? 'badge-success' : 'badge-warning'}">${t.status_bayar || 'Belum Lunas'}</span></td>
-                                        </tr>
-                                    `).join('')}
+                                    ${filteredTransaksi.length === 0 ? '<tr><td colspan="6" style="text-align: center; padding: 20px;">Tidak ada data</td></tr>' : 
+                                    filteredTransaksi.map(t => {
+                                        const isLunas = t.status_bayar === 'Lunas' && t.tanggal_lunas;
+                                        return `
+                                            <tr>
+                                                <td>${this.formatDate(t.tanggal)}</td>
+                                                <td>${t.invoice}</td>
+                                                <td>${t.customer}</td>
+                                                <td>${t.hp || '-'}</td>
+                                                <td>${this.fmtRupiah(parseFloat(t.total) || 0)}</td>
+                                                <td><span class="badge ${isLunas ? 'badge-success' : 'badge-warning'}">${isLunas ? 'Lunas' : 'Belum Lunas'}</span></td>
+                                            </tr>
+                                        `;
+                                    }).join('')}
                                 </tbody>
                             </table>
                         </div>
@@ -2005,63 +2052,113 @@
                 const d = State.currentLaporan;
                 const s = State.settings;
 
-                // Header
-                pdf.setFontSize(18);
+                // HEADER
+                pdf.setFontSize(16);
                 pdf.setFont(undefined, 'bold');
                 pdf.text((s.nama_laundry || 'YENI JAYA LAUNDRY').toUpperCase(), 105, 20, { align: 'center' });
-                pdf.setFontSize(11);
+                
+                pdf.setFontSize(10);
                 pdf.setFont(undefined, 'normal');
-                pdf.text('LAPORAN KEUANGAN', 105, 30, { align: 'center' });
-                pdf.setFontSize(10);
-                pdf.text(`Periode: ${d.periode}`, 105, 38, { align: 'center' });
+                pdf.text(s.alamat || '-', 105, 28, { align: 'center' });
+                pdf.text('WA: ' + (s.whatsapp || '-'), 105, 34, { align: 'center' });
+                
+                pdf.setDrawColor(99, 102, 241);
+                pdf.setLineWidth(0.5);
+                pdf.line(20, 38, 190, 38);
 
-                // Summary Box
+                pdf.setFontSize(14);
+                pdf.setFont(undefined, 'bold');
+                pdf.text('LAPORAN KEUANGAN', 105, 48, { align: 'center' });
+                
+                pdf.setFontSize(10);
+                pdf.setFont(undefined, 'normal');
+                pdf.text('Periode: ' + d.periode, 105, 56, { align: 'center' });
+
+                // SUMMARY BOX
                 pdf.setFillColor(241, 245, 249);
-                pdf.roundedRect(20, 45, 170, 35, 3, 3, 'F');
+                pdf.roundedRect(20, 62, 170, 40, 3, 3, 'F');
                 pdf.setDrawColor(226, 232, 240);
-                pdf.roundedRect(20, 45, 170, 35, 3, 3, 'S');
+                pdf.roundedRect(20, 62, 170, 40, 3, 3, 'S');
 
-                pdf.setFontSize(10);
+                pdf.setFontSize(9);
                 pdf.setTextColor(30, 41, 59);
-                pdf.text(`Total Omzet: ${this.fmtRupiah(d.totalOmzet)}`, 25, 55);
-                pdf.text(`Total Pengeluaran: ${this.fmtRupiah(d.totalPengeluaran)}`, 25, 65);
-                pdf.text(`Laba Bersih: ${this.fmtRupiah(d.labaBersih)}`, 25, 75);
-                pdf.text(`Total Transaksi: ${d.transaksi.length}`, 110, 55);
-                pdf.text(`Total Pengeluaran: ${d.pengeluaran.length}`, 110, 65);
-                pdf.text(`Dicetak: ${new Date().toLocaleString('id-ID')}`, 110, 75);
+                pdf.text('Omzet Lunas: ' + this.fmtRupiah(d.totalOmzet), 25, 72);
+                pdf.text('Piutang: ' + this.fmtRupiah(d.totalPiutang), 25, 82);
+                pdf.text('Pengeluaran: ' + this.fmtRupiah(d.totalPengeluaran), 110, 72);
+                pdf.text('Laba Bersih: ' + this.fmtRupiah(d.labaBersih), 110, 82);
+                pdf.text('Total Transaksi: ' + d.transaksi.length, 25, 92);
+                pdf.text('Dicetak: ' + new Date().toLocaleString('id-ID'), 110, 92);
 
-                // Transactions Table
+                // TRANSAKSI TABLE
                 pdf.setFontSize(11);
                 pdf.setFont(undefined, 'bold');
-                pdf.text('Detail Transaksi', 20, 95);
+                pdf.setTextColor(30, 41, 59);
+                pdf.text('Detail Transaksi', 20, 115);
 
-                const transaksiData = d.transaksi.map(t => [
-                    this.formatDate(t.Tanggal || t.tanggal),
-                    t.Invoice || t.invoice || '',
-                    (t.Customer || t.customer || '').substring(0, 30),
-                    this.fmtRupiah(parseFloat(t.Total || t.total) || 0),
-                    t.status_bayar || 'Belum Lunas'
-                ]);
+                const transaksiData = d.transaksi.map(t => {
+                    const isLunas = t.status_bayar === 'Lunas' && t.tanggal_lunas;
+                    return [
+                        this.formatDate(t.tanggal),
+                        t.invoice || '',
+                        (t.customer || '').substring(0, 25),
+                        t.hp || '-',
+                        this.fmtRupiah(parseFloat(t.total) || 0),
+                        isLunas ? 'Lunas' : 'Belum Lunas'
+                    ];
+                });
 
                 pdf.autoTable({
-                    startY: 100,
-                    head: [['Tanggal', 'Invoice', 'Customer', 'Total', 'Status']],
+                    startY: 120,
+                    head: [['Tanggal', 'Invoice', 'Customer', 'No. HP', 'Total', 'Status']],
                     body: transaksiData,
                     theme: 'striped',
-                    headStyles: { fillColor: [99, 102, 241], textColor: 255, fontSize: 9 },
-                    bodyStyles: { fontSize: 8 },
-                    styles: { cellPadding: 3 },
+                    headStyles: { fillColor: [99, 102, 241], textColor: 255, fontSize: 8 },
+                    bodyStyles: { fontSize: 7 },
+                    styles: { cellPadding: 2 },
                     columnStyles: {
                         0: { cellWidth: 30 },
-                        1: { cellWidth: 35 },
-                        2: { cellWidth: 55 },
-                        3: { cellWidth: 35 },
-                        4: { cellWidth: 30 }
+                        1: { cellWidth: 25 },
+                        2: { cellWidth: 45 },
+                        3: { cellWidth: 25 },
+                        4: { cellWidth: 35 },
+                        5: { cellWidth: 25 }
                     }
                 });
 
-                // Save PDF
-                const fileName = `Laporan_${d.periode.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+                // PENGELUARAN TABLE
+                let finalY = pdf.lastAutoTable.finalY + 10;
+                if (finalY > 250) {
+                    pdf.addPage();
+                    finalY = 20;
+                }
+
+                pdf.setFontSize(11);
+                pdf.setFont(undefined, 'bold');
+                pdf.text('Detail Pengeluaran', 20, finalY);
+
+                const pengeluaranData = d.pengeluaran.map(p => [
+                    this.formatDate(p.tanggal),
+                    p.kategori || '-',
+                    (p.keterangan || '').substring(0, 50),
+                    this.fmtRupiah(parseFloat(p.nominal) || 0)
+                ]);
+
+                pdf.autoTable({
+                    startY: finalY + 5,
+                    head: [['Tanggal', 'Kategori', 'Keterangan', 'Nominal']],
+                    body: pengeluaranData,
+                    theme: 'striped',
+                    headStyles: { fillColor: [239, 68, 68], textColor: 255, fontSize: 8 },
+                    bodyStyles: { fontSize: 7 },
+                    styles: { cellPadding: 2 }
+                });
+
+                // FOOTER
+                pdf.setFontSize(8);
+                pdf.setTextColor(120, 120, 120);
+                pdf.text('Laporan ini dibuat otomatis oleh sistem ' + (s.nama_laundry || 'YENI JAYA LAUNDRY'), 105, 285, { align: 'center' });
+
+                const fileName = 'Laporan_' + d.periode.replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
                 pdf.save(fileName);
 
                 Swal.fire({
@@ -2074,24 +2171,24 @@
             exportDashboard() {
                 Swal.fire({
                     title: 'Export Dashboard',
-                    text: 'Fitur ini akan mengunduh semua data dalam format Excel',
+                    text: 'Download semua data transaksi dalam format CSV',
                     icon: 'info',
                     showCancelButton: true,
-                    confirmButtonText: 'Download',
+                    confirmButtonText: 'Download CSV',
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Create CSV
-                        let csv = 'Invoice,Tanggal,Customer,HP,Total,Metode,Status\n';
+                        let csv = 'Invoice,Tanggal,Customer,No HP,Total,Metode,Status\n';
                         State.transaksi.forEach(t => {
-                            csv += `${t.Invoice || t.invoice},${t.Tanggal || t.tanggal},${t.Customer || t.customer},${t.HP || t.hp},${t.Total || t.total},${t.Metode || t.metode},${t.status_bayar || 'Belum Lunas'}\n`;
+                            const isLunas = t.status_bayar === 'Lunas' && t.tanggal_lunas;
+                            csv += `${t.invoice},${t.tanggal},${t.customer},${t.hp || '-'},${t.total},${t.metode || 'Cash'},${isLunas ? 'Lunas' : 'Belum Lunas'}\n`;
                         });
 
                         const blob = new Blob([csv], { type: 'text/csv' });
                         const url = window.URL.createObjectURL(blob);
                         const a = document.createElement('a');
                         a.href = url;
-                        a.download = `Dashboard_YeniJaya_${new Date().toISOString().split('T')[0]}.csv`;
+                        a.download = 'Dashboard_YeniJaya_' + new Date().toISOString().split('T')[0] + '.csv';
                         a.click();
 
                         Swal.fire({
@@ -2103,21 +2200,28 @@
                 });
             },
 
-            // Utility Functions
+            // ============================================================
+            // UTILITY FUNCTIONS
+            // ============================================================
             fmtRupiah(angka) {
                 return 'Rp ' + (angka || 0).toLocaleString('id-ID');
             },
 
             formatDate(dateString) {
                 if (!dateString) return '-';
-                const date = new Date(dateString);
-                return date.toLocaleDateString('id-ID', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
+                try {
+                    const date = new Date(dateString);
+                    if (isNaN(date.getTime())) return '-';
+                    return date.toLocaleDateString('id-ID', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                } catch {
+                    return '-';
+                }
             }
         };
 
